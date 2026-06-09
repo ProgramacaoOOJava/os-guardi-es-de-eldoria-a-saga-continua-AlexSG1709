@@ -6,15 +6,14 @@ package eldoria;
  */
 public class Guerreiro extends Personagem {
 
-     // * Construtor para criar um Guerreiro.
+    public Guerreiro(String nome, int nivel, int pontosDeVida, double poderBase) {
+        // Passa "Guerreiro" fixo como o atributo de classe para a superclasse
+        super(nome, "Guerreiro", nivel, pontosDeVida, poderBase);
+    }
 
-    /**
-     * Sobrescrita do método usarHabilidade() específica para Guerreiros.
-     * Demonstra polimorfismo e vinculação dinâmica.
-     */
     @Override
     public void usarHabilidade() {
-
+        System.out.println("Habilidade: " + getNome() + " avança com um ataque devastador!");
     }
 }
 
