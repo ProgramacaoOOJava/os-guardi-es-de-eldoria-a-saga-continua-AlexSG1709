@@ -6,18 +6,13 @@ package eldoria;
  */
 public class Mago extends Personagem {
 
-    
-    // * Construtor para criar um Mago.
+    public Mago(String nome, int nivel, int pontosDeVida, double poderBase) {
+        // Passa "Mago" fixo como o atributo de classe para a superclasse
+        super(nome, "Mago", nivel, pontosDeVida, poderBase);
+    }
 
-
-
-    /**
-     * Sobrescrita do método usarHabilidade() específica para Magos.
-     * Demonstra polimorfismo e vinculação dinâmica.
-     */
     @Override
     public void usarHabilidade() {
-
+        System.out.println("Habilidade: " + getNome() + " conjura um feitiço de proteção!");
     }
 }
-
