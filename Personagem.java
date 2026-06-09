@@ -2,57 +2,95 @@ package eldoria;
 
 import java.util.Objects;
 
-/**
- * Classe base para representar personagens do reino de Eldoria.
- * Aplica conceitos de encapsulamento, herança e polimorfismo.
- */
-public class abstract Personagem {
-    // Atributos privados (encapsulamento)
+public abstract class Personagem {
+    // Atributos encapsulados (private)
+    private String nome;
+    private String classe;
+    private int nivel;
+    private int pontosDeVida;
+    private double poderBase;
 
+    // Construtor completo
+    public Personagem(String nome, String classe, int nivel, int pontosDeVida, double poderBase) {
+        this.nome = nome;
+        this.classe = classe;
+        setNivel(nivel);             // Usa o setter para garantir a validação
+        setPontosDeVida(pontosDeVida); // Usa o setter para garantir a validação
+        this.poderBase = poderBase;
+    }
 
-    // * Construtor que inicializa todos os atributos do personagem.
+    // Método abstrato a ser implementado pelas subclasses (Nível Novato/Mestre)
+    public abstract void usarHabilidade();
 
-    // Getters
+    // Getters e Setters com validações (Nível Aventureiro)
+    public String getNome() {
+        return nome;
+    }
 
-    // Setters com validações
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    // * Criar métodos que define os pontos de vida do personagem.
+    public String getClasse() {
+        return classe;
+    }
 
+    public void setClasse(String classe) {
+        this.classe = classe;
+    }
 
-    /**
-     * Criar método que define a habilidade do personagem.
-     * Deve ser sobrescrito pelas subclasses para implementar comportamentos específicos.
-     */
+    public int getNivel() {
+        return nivel;
+    }
 
+    public void setNivel(int nivel) {
+        if (nivel < 0) {
+            throw new IllegalArgumentException("O nível não pode ser negativo!");
+        }
+        this.nivel = nivel;
+    }
 
+    public int getPontosDeVida() {
+        return pontosDeVida;
+    }
 
-    /**
-     * Sobrescrita do método toString() para exibir informações do personagem.
-     * @return String formatada com todos os atributos do personagem
-     */
+    public void setPontosDeVida(int pontosDeVida) {
+        if (pontosDeVida < 0) {
+            throw new IllegalArgumentException("Os pontos de vida não podem ser negativos!");
+        }
+        this.pontosDeVida = pontosDeVida;
+    }
+
+    public double getPoderBase() {
+        return poderBase;
+    }
+
+    public void setPoderBase(double poderBase) {
+        this.poderBase = poderBase;
+    }
+
+    // Sobrescrita de toString() para formatação personalizada (Nível Aventureiro)
     @Override
     public String toString() {
-
+        return "Nome: " + nome + "\n" +
+               "Classe: " + classe + "\n" +
+               "Nível: " + nivel + "\n" +
+               "Pontos de Vida: " + pontosDeVida + "\n" +
+               "Poder Base: " + poderBase;
     }
 
-    /**
-     * Sobrescrita do método equals() para comparar personagens.
-     * Dois personagens são considerados iguais se tiverem o mesmo nome e classe.
-     * @param obj Objeto a ser comparado
-     * @return true se os personagens forem iguais, false caso contrário
-     */
+    // Sobrescrita de equals() baseada em nome e classe (Nível Aventureiro)
     @Override
-    public boolean equals(Object obj) {
-
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Personagem that = (Personagem) o;
+        return Objects.equals(nome, that.nome) && Objects.equals(classe, that.classe);
     }
 
-    /**
-     * Sobrescrita do método hashCode() para ser consistente com equals().
-     * @return Código hash baseado no nome e classe
-     */
+    // Sobrescrita de hashCode() consistente com equals()
     @Override
     public int hashCode() {
-
+        return Objects.hash(nome, classe);
     }
 }
-
