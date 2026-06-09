@@ -10,7 +10,7 @@ public class Main {
         // Criando a lista polimórfica (Nível Mestre)
         List<Personagem> herois = new ArrayList<>();
 
-        // Adicionando múltiplos personagens (Pelo menos 2 Magos e 2 Guerreiros)
+        // Adicionando múltiplos personagens (2 Magos e 2 Guerreiros)
         herois.add(new Mago("Eldoran", 7, 60, 18.0));
         herois.add(new Guerreiro("Arthemis", 8, 90, 25.5));
         herois.add(new Mago("Valerius", 5, 50, 22.0));
